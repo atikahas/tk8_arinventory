@@ -1,4 +1,4 @@
-@extends('layouts.sleek.main')
+@extends('layouts.sleek.admin')
 @section('activeroles', 'active')
 @section('expandroles', 'expand')
 @section('showroles', 'show')
