@@ -28,7 +28,7 @@
         <div class="col-12">
             <div class="card card-default">
                 <div class="card-body">
-                    <a href="{{ route('users.create') }}" class="btn btn-outline-primary btn-sm text-uppercase float-right">
+                    <a href="{{ route('items.create') }}" class="btn btn-outline-primary btn-sm text-uppercase float-right">
                         <i class=" mdi mdi-plus"></i> Add New Item
                     </a>
                     <table id="items-table" class="table dt-responsive table-hover nowrap" style="width:100%;">

@@ -28,6 +28,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     Route::group(['middleware' => ['auth', 'permission']], function() {
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
+        Route::get('data/getLocation', 'DropdownController@getLocation');
+        Route::get('data/getCategory', 'DropdownController@getCategory');
+        Route::get('data/getSubCategory', 'DropdownController@getSubCategory');
+
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'UsersController@index')->name('users.index');
             Route::get('/create', 'UsersController@create')->name('users.create');
@@ -50,6 +54,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
         Route::group(['prefix' => 'items'], function() {
             Route::get('/', 'ItemsController@index')->name('items.index');
+            Route::get('/create', 'ItemsController@create')->name('items.create');
+            Route::post('/create', 'ItemsController@store')->name('items.store');
         });
 
         Route::resource('roles', RolesController::class);

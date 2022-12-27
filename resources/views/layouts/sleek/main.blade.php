@@ -20,6 +20,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="{{url('')}}/sleek/theme/assets/plugins/nprogress/nprogress.js"></script>
+    <link href="{{url('')}}/sleek/theme/assets/plugins/toastr/toastr.min.css" rel="stylesheet">
     @yield('scriptheader')
   </head>
 
@@ -58,7 +59,7 @@
               <hr class="separator mb-0" />
 
               <li class="">
-                <a class="sidenav-item-link" href="{{ url('users') }}">
+                <a class="sidenav-item-link" href="{{ url('/home') }}">
                   <i class="mdi mdi-apps"></i>
                   <span class="nav-text">Dashboard</span>
                 </a>
@@ -166,6 +167,15 @@
     <script src="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.min.js"></script>
     <script src="{{url('')}}/sleek/theme/assets/js/sleek.js"></script>
     <link href="{{url('')}}/sleek/source/assets/options/optionswitch.css" rel="stylesheet">
+    <script src='{{url('')}}/sleek/theme/assets/plugins/toastr/toastr.min.js'></script>
+    <script>
+      @if(Session('success'))
+      toastr.success("{{Session('success')}}");
+      @endif
+      @if(Session('error'))
+      toastr.danger("{{Session('error')}}");
+      @endif
+    </script>
     @yield('scriptfooter')
   </body>
 </html>

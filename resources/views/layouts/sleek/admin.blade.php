@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TK8 Admin</title>
+    <title>AR Inventory</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
     <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
     <link href="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
@@ -20,6 +20,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="{{url('')}}/sleek/theme/assets/plugins/nprogress/nprogress.js"></script>
+    <link href="{{url('')}}/sleek/theme/assets/plugins/toastr/toastr.min.css" rel="stylesheet">
     @yield('scriptheader')
   </head>
 
@@ -34,7 +35,7 @@
       <aside class="left-sidebar bg-sidebar">
         <div id="sidebar" class="sidebar sidebar-with-footer">
           <div class="app-brand">
-            <a href="/index.html" title="Sleek Dashboard">
+            <a href="{{ url('/home') }}" title="Sleek Dashboard">
               <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
                 <g fill="none" fill-rule="evenodd">
                   <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
@@ -192,6 +193,15 @@
     <script src="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.min.js"></script>
     <script src="{{url('')}}/sleek/theme/assets/js/sleek.js"></script>
     <link href="{{url('')}}/sleek/source/assets/options/optionswitch.css" rel="stylesheet">
+    <script src='{{url('')}}/sleek/theme/assets/plugins/toastr/toastr.min.js'></script>
+    <script>
+      @if(Session('success'))
+      toastr.success("{{Session('success')}}");
+      @endif
+      @if(Session('error'))
+      toastr.danger("{{Session('error')}}");
+      @endif
+    </script>
     @yield('scriptfooter')
   </body>
 </html>

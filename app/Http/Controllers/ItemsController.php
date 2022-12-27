@@ -21,4 +21,27 @@ class ItemsController extends Controller
 
         return view('items.index', (compact('items')));
     }
+
+    public function create() 
+    {
+        return view('items.create');
+    }
+
+    public function store(Request $request)
+    {   
+        $data = $request->except(['_token']);
+        $data['created_by'] = Auth::user()->id;
+
+        if($request->has('image')) {
+            $image = $request->file('image');
+            $image_name = uniqid().'_'.$image->getClientOriginalName();
+            $image->storeAs('public/items_image/', $image_name);
+
+            $data['item_image'] = $image_name;
+        }
+
+        $items = ItemList::create($data);
+
+        return redirect()->route('items.index')->withSuccess(__('Items added successfully.'));
+    }
 }
