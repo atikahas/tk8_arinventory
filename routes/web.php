@@ -56,6 +56,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/', 'ItemsController@index')->name('items.index');
             Route::get('/create', 'ItemsController@create')->name('items.create');
             Route::post('/create', 'ItemsController@store')->name('items.store');
+            Route::get('/{item}/show', 'ItemsController@show')->name('items.show');
+            Route::get('/edit/{item}/', 'ItemsController@edit')->name('items.edit');
+            Route::patch('/{item}/update', 'ItemsController@update')->name('items.update');
         });
 
         Route::resource('roles', RolesController::class);
