@@ -1,4 +1,4 @@
-@extends('layouts.sleek.admin')
+@extends('layouts.sleek.main')
 
 @section('content')
     <div class="bg-light p-5 rounded">

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TK8 Admin</title>
+    <title>AR Inventory</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
     <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
     <link href="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
@@ -34,83 +34,57 @@
       <aside class="left-sidebar bg-sidebar">
         <div id="sidebar" class="sidebar sidebar-with-footer">
           <div class="app-brand">
-            <a href="/index.html" title="Sleek Dashboard">
+            <a href="{{ url('/home') }}">
               <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
                 <g fill="none" fill-rule="evenodd">
                   <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
                   <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                 </g>
               </svg>
-              <span class="brand-name text-truncate">Laravel 8 Admin</span>
+              <span class="brand-name text-truncate">AR Inventory</span>
             </a>
           </div>
 
           <div class="" data-simplebar style="height: 100%;">
             <ul class="nav sidebar-inner" id="sidebar-menu">
 
-              <li class="has-sub @yield('activeuser') @yield('expanduser')">
-                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#users" aria-expanded="false" aria-controls="users">
-                  <i class="mdi mdi-account-multiple-outline"></i>
-                  <span class="nav-text">Users</span> <b class="caret"></b>
+              <li class="">
+                <a class="sidenav-item-link" href="{{ url('users') }}">
+                  <i class="mdi mdi-account-circle"></i>
+                  <span class="nav-text">Administration</span>
                 </a>
-                <ul class="collapse @yield('showuser')" id="users" data-parent="#sidebar-menu">
+              </li>
+
+              <hr class="separator mb-0" />
+
+              <li class="">
+                <a class="sidenav-item-link" href="{{ url('users') }}">
+                  <i class="mdi mdi-apps"></i>
+                  <span class="nav-text">Dashboard</span>
+                </a>
+              </li>
+
+              <li class="has-sub @yield('activeitems') @yield('expanditems')">
+                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#items" aria-expanded="false" aria-controls="items">
+                  <i class="mdi mdi-package-variant-closed"></i>
+                  <span class="nav-text">Items</span> <b class="caret"></b>
+                </a>
+                <ul class="collapse @yield('showitems')" id="items" data-parent="#sidebar-menu">
                   <div class="sub-menu">
-                    <li class="@yield('listuser')">
-                      <a class="sidenav-item-link" href="{{ url('users') }}">
-                        <span class="nav-text">List Users</span>
+                    <li class="@yield('listitems')">
+                      <a class="sidenav-item-link" href="{{ url('items') }}">
+                        <span class="nav-text">List Items</span>
                       </a>
                     </li>
-                    <li class="@yield('adduser')">
-                      <a class="sidenav-item-link" href="{{ url('users/create') }}">
-                        <span class="nav-text">Add New User</span>
+                    <li class="@yield('additems')">
+                      <a class="sidenav-item-link" href="{{ url('items/create') }}">
+                        <span class="nav-text">Add Items</span>
                       </a>
                     </li>
                   </div>
                 </ul>
               </li>
 
-              <li class="has-sub @yield('activepermission') @yield('expandpermission')">
-                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#permissions" aria-expanded="false" aria-controls="permissions">
-                  <i class="mdi mdi-account-key"></i>
-                  <span class="nav-text">Permission</span> <b class="caret"></b>
-                </a>
-                <ul class="collapse @yield('showpermission')" id="permissions" data-parent="#sidebar-menu">
-                  <div class="sub-menu">
-                    <li class="@yield('listpermission')">
-                      <a class="sidenav-item-link" href="{{ url('permissions') }}">
-                        <span class="nav-text">List Permissions</span>
-                      </a>
-                    </li>
-                    <li class="@yield('addpermission')">
-                      <a class="sidenav-item-link" href="{{ url('permissions/create') }}">
-                        <span class="nav-text">Add Permissions</span>
-                      </a>
-                    </li>
-                  </div>
-                </ul>
-              </li>
-
-              <li class="has-sub @yield('activeroles') @yield('expandroles')">
-                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#roles" aria-expanded="false" aria-controls="roles">
-                  <i class="mdi mdi-account-check"></i>
-                  <span class="nav-text">Roles</span> <b class="caret"></b>
-                </a>
-                <ul class="collapse @yield('showroles')" id="roles" data-parent="#sidebar-menu">
-                  <div class="sub-menu">
-                    <li class="@yield('listroles')">
-                      <a class="sidenav-item-link" href="{{ url('roles') }}">
-                        <span class="nav-text">List Roles</span>
-                      </a>
-                    </li>
-                    <li class="@yield('addroles')">
-                      <a class="sidenav-item-link" href="{{ url('roles/create') }}">
-                        <span class="nav-text">Add Roles</span>
-                      </a>
-                    </li>
-                  </div>
-                </ul>
-              </li>
-              
             </ul>
           </div>
         </div>
