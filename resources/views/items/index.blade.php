@@ -60,8 +60,7 @@
                                     </div>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" href="#" target=_blank><i class="mdi mdi-eye"></i></a>
-                                        {{-- <a class="btn btn-sm btn-secondary" href="{{ route('items.edit', $i->id) }}"><i class="mdi mdi-square-edit-outline"></i></a> --}}
+                                        <a class="btn btn-sm btn-primary" href="{{ route('items.show', $i->id) }}"><i class="mdi mdi-eye"></i></a>
                                         <a class="btn btn-sm btn-secondary" href="{{url('items/edit/'.$i->id.'?category_id='.$i->category_id.'&subcategory_id='.$i->subcategory_id.'&location_id='.$i->location_id)}}"><i class="mdi mdi-square-edit-outline"></i></a>
                                     </td>
                                 </tr>

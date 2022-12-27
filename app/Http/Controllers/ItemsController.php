@@ -65,4 +65,9 @@ class ItemsController extends Controller
 
         return redirect()->route('items.index')->withSuccess(__('Items updated successfully.'));
     }
+
+    public function show(ItemList $item)
+    {    
+        return view('items.show', ['item' => $item]);
+    }
 }
