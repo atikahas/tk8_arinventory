@@ -31,6 +31,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('data/getLocation', 'DropdownController@getLocation');
         Route::get('data/getCategory', 'DropdownController@getCategory');
         Route::get('data/getSubCategory', 'DropdownController@getSubCategory');
+        Route::get('data/getCategoryExpenses', 'DropdownController@getCategoryExpenses');
 
         Route::group(['prefix' => 'users'], function() {
             Route::get('/', 'UsersController@index')->name('users.index');
@@ -59,6 +60,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/{item}/show', 'ItemsController@show')->name('items.show');
             Route::get('/edit/{item}/', 'ItemsController@edit')->name('items.edit');
             Route::patch('/{item}/update', 'ItemsController@update')->name('items.update');
+        });
+
+        Route::group(['prefix' => 'expenses'], function() {
+            Route::get('/', 'ExpensesController@index')->name('expenses.index');
+            Route::get('/create', 'ExpensesController@create')->name('expenses.create');
+            Route::post('/create', 'ExpensesController@store')->name('expenses.store');
+            Route::get('/{expense}/show', 'ExpensesController@show')->name('expenses.show');
+            Route::get('/{expense}/edit', 'ExpensesController@edit')->name('expenses.edit');
+            Route::patch('/{expense}/update', 'ExpensesController@update')->name('expenses.update');
+            Route::get('/summary', 'ExpensesController@summary')->name('expenses.summary');
         });
 
         Route::resource('roles', RolesController::class);

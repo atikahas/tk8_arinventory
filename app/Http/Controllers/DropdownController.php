@@ -18,6 +18,11 @@ class DropdownController extends Controller
         return response()->json($category);
     }
 
+    public function getCategoryExpenses(Request $request) {
+        $category = DB::table('item_category')->where($request->all())->get();
+        return response()->json($category);
+    }
+
     public function getSubCategory(Request $request) {
         $subcategory = DB::table('item_subcategory')->where($request->all())->get();
         return response()->json($subcategory);

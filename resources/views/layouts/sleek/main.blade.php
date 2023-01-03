@@ -58,7 +58,7 @@
 
               <hr class="separator mb-0" />
 
-              <li class="">
+              <li class=" @yield('activedash')">
                 <a class="sidenav-item-link" href="{{ url('/home') }}">
                   <i class="mdi mdi-apps"></i>
                   <span class="nav-text">Dashboard</span>
@@ -80,6 +80,32 @@
                     <li class="@yield('additems')">
                       <a class="sidenav-item-link" href="{{ url('items/create') }}">
                         <span class="nav-text">Add Items</span>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+
+              <li class="has-sub @yield('activeexpenses') @yield('expandexpenses')">
+                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#expenses" aria-expanded="false" aria-controls="expenses">
+                  <i class="mdi mdi-cash-multiple"></i>
+                  <span class="nav-text">Expenses</span> <b class="caret"></b>
+                </a>
+                <ul class="collapse @yield('showexpenses')" id="expenses" data-parent="#sidebar-menu">
+                  <div class="sub-menu">
+                    <li class="@yield('listexpenses')">
+                      <a class="sidenav-item-link" href="{{ url('expenses') }}">
+                        <span class="nav-text">List Expenses</span>
+                      </a>
+                    </li>
+                    <li class="@yield('addexpenses')">
+                      <a class="sidenav-item-link" href="{{ url('expenses/create') }}">
+                        <span class="nav-text">Add Expenses</span>
+                      </a>
+                    </li>
+                    <li class="@yield('summaryexpenses')">
+                      <a class="sidenav-item-link" href="{{ url('expenses/summary') }}">
+                        <span class="nav-text">Summary Expenses</span>
                       </a>
                     </li>
                   </div>
