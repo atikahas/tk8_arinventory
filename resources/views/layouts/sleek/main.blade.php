@@ -10,7 +10,7 @@
     <link href="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
     <link href="{{url('')}}/sleek/theme/assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
     <link id="sleek-css" rel="stylesheet" href="{{url('')}}/sleek/theme/assets/css/sleek.css" />
-    <link href="{{url('')}}/sleek/theme/assets/img/favicon.png" rel="shortcut icon" />
+    <link href="{{url('')}}/sleek/arlogo/ar-logo.png" rel="shortcut icon" />
     <!--
     HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
     -->
@@ -36,27 +36,22 @@
         <div id="sidebar" class="sidebar sidebar-with-footer">
           <div class="app-brand">
             <a href="{{ url('/home') }}">
-              <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
-                <g fill="none" fill-rule="evenodd">
-                  <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
-                  <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                </g>
-              </svg>
-              <span class="brand-name text-truncate">AR Inventory</span>
+              <img class="brand-icon" src="{{url('')}}/sleek/arlogo/ar-logo.png" width="40" height="43">
+              <span class="brand-name text-truncate">Inventory System</span>
             </a>
           </div>
 
           <div class="" data-simplebar style="height: 100%;">
             <ul class="nav sidebar-inner" id="sidebar-menu">
 
-              <li class="">
+              {{-- <li class="">
                 <a class="sidenav-item-link" href="{{ url('users') }}">
                   <i class="mdi mdi-account-circle"></i>
                   <span class="nav-text">Administration</span>
                 </a>
               </li>
 
-              <hr class="separator mb-0" />
+              <hr class="separator mb-0" /> --}}
 
               <li class=" @yield('activedash')">
                 <a class="sidenav-item-link" href="{{ url('/home') }}">
@@ -145,13 +140,6 @@
             <button id="sidebar-toggler" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span></button>
             
             <div class="search-form d-none d-lg-inline-block">
-              <div class="input-group">
-                <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="mdi mdi-magnify"></i></button>
-                <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc." autofocus autocomplete="off" />
-              </div>
-              <div id="search-results-container">
-                <ul id="search-results"></ul>
-              </div>
             </div>
 
             <div class="navbar-right ">

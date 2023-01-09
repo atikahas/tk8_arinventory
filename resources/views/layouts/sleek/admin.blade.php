@@ -10,7 +10,7 @@
     <link href="{{url('')}}/sleek/source/assets/plugins/simplebar/simplebar.css" rel="stylesheet" />
     <link href="{{url('')}}/sleek/theme/assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
     <link id="sleek-css" rel="stylesheet" href="{{url('')}}/sleek/theme/assets/css/sleek.css" />
-    <link href="{{url('')}}/sleek/theme/assets/img/favicon.png" rel="shortcut icon" />
+    <link href="{{url('')}}/sleek/arlogo/ar-logo.png" rel="shortcut icon" />
     <!--
     HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
     -->
@@ -36,13 +36,14 @@
         <div id="sidebar" class="sidebar sidebar-with-footer">
           <div class="app-brand">
             <a href="{{ url('/home') }}" title="Sleek Dashboard">
-              <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
+              {{-- <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
                 <g fill="none" fill-rule="evenodd">
                   <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
                   <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                 </g>
-              </svg>
-              <span class="brand-name text-truncate">Laravel 8 Admin</span>
+              </svg> --}}
+              <img class="brand-icon" src="{{url('')}}/sleek/arlogo/ar-logo.png" width="40" height="43">
+              <span class="brand-name text-truncate">Administration</span>
             </a>
           </div>
 

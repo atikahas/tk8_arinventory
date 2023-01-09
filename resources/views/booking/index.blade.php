@@ -9,7 +9,7 @@
 <link href="{{url('')}}/sleek/source/assets/plugins/data-tables/datatables.bootstrap4.min.css" rel="stylesheet">
 <link href="{{url('')}}/sleek/source/assets/plugins/data-tables/responsive.datatables.min.css" rel="stylesheet">
 <link href="https://unpkg.com/sleek-dashboard/dist/assets/css/sleek.min.css">
-<link href="{{url('')}}/sleek/theme/assets/plugins/fullcalendar/core-4.3.1/main.min.css" rel="stylesheet">
+<link href="{{url('')}}/sleek/theme/assets/plugins/fullcalendar/core-4.3.1/main.css" rel="stylesheet">
 <link href="{{url('')}}/sleek/theme/assets/plugins/fullcalendar/daygrid-4.3.0/main.min.css" rel="stylesheet">
 @endsection
 

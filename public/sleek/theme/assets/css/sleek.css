@@ -15718,7 +15718,7 @@ div.copied {
   top: 0;
   width: .19rem;
   height: 100%;
-  background: #4c84ff;
+  background: #6B8F39;
   opacity: 0;
 }
 
@@ -15743,7 +15743,7 @@ div.copied {
 .app-brand {
   position: relative;
   display: block;
-  background-color: #4c84ff;
+  /* background-color: ; */
 }
 
 .app-brand a {
@@ -15770,7 +15770,7 @@ div.copied {
 }
 
 .app-brand a img {
-  max-width: 80px;
+  max-width: 190px;
   vertical-align: middle;
 }
 
@@ -15792,7 +15792,7 @@ div.copied {
 }
 
 .sidebar .nav > li.active > a i {
-  color: #4c84ff;
+  color: #6B8F39;
 }
 
 /* Caret styles */
