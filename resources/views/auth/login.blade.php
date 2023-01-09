@@ -26,7 +26,7 @@
                                             <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                                         </g>
                                     </svg>
-                                    <span class="brand-name">Laravel 8 Admin</span>
+                                    <span class="brand-name">AR Inventory</span>
                                 </a>
                             </div>
                         </div>

@@ -65,6 +65,27 @@
                 </a>
               </li>
 
+              <li class="has-sub @yield('activebooking') @yield('expandbooking')">
+                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#booking" aria-expanded="false" aria-controls="booking">
+                  <i class="mdi mdi-calendar-plus"></i>
+                  <span class="nav-text">Booking</span> <b class="caret"></b>
+                </a>
+                <ul class="collapse @yield('showbooking')" id="booking" data-parent="#sidebar-menu">
+                  <div class="sub-menu">
+                    <li class="@yield('listbooking')">
+                      <a class="sidenav-item-link" href="{{ url('booking') }}">
+                        <span class="nav-text">List Booking</span>
+                      </a>
+                    </li>
+                    <li class="@yield('addbooking')">
+                      <a class="sidenav-item-link" href="{{ url('booking/create') }}">
+                        <span class="nav-text">Add Booking</span>
+                      </a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+
               <li class="has-sub @yield('activeitems') @yield('expanditems')">
                 <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#items" aria-expanded="false" aria-controls="items">
                   <i class="mdi mdi-package-variant-closed"></i>

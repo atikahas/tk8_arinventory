@@ -72,6 +72,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('/summary', 'ExpensesController@summary')->name('expenses.summary');
         });
 
+        Route::group(['prefix' => 'booking'], function() {
+            Route::get('/', 'BookingController@index')->name('booking.index');
+            Route::get('/create', 'BookingController@create')->name('booking.create');
+            Route::post('/create', 'BookingController@store')->name('booking.store');
+            Route::get('/{booking}/show', 'BookingController@show')->name('booking.show');
+            Route::get('/{booking}/edit', 'BookingController@edit')->name('booking.edit');
+            Route::patch('/{booking}/update', 'BookingController@update')->name('booking.update');
+        });
+
         Route::resource('roles', RolesController::class);
         Route::resource('permissions', PermissionsController::class);
     });
