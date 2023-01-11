@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>AR Inventory</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
     <link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
@@ -210,6 +211,21 @@
       @if(Session('error'))
       toastr.danger("{{Session('error')}}");
       @endif
+    </script>
+    <script>
+      (function () {
+          if (typeof EventTarget !== "undefined") {
+              let func = EventTarget.prototype.addEventListener;
+              EventTarget.prototype.addEventListener = function (type, fn, capture) {
+                  this.func = func;
+                  if(typeof capture !== "boolean"){
+                      capture = capture || {};
+                      capture.passive = false;
+                  }
+                  this.func(type, fn, capture);
+              };
+          };
+      }());
     </script>
     @yield('scriptfooter')
   </body>
