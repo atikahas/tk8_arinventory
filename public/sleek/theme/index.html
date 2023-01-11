@@ -2063,6 +2063,11 @@
  
     <script src='assets/plugins/charts/Chart.min.js'></script>
     <script src='assets/js/chart.js'></script>
+    <script>
+      fetch('https://inventory.amanrimba.com/data/getPublicItem.json')
+.then(res => res.json())
+.then(json => console.log(json))
+    </script>
 
     
     
