@@ -47,4 +47,9 @@ class DropdownController extends Controller
         $item = DB::table('expense_item')->where($request->all())->get();
         return response()->json($item);
     }
+
+    public function getPublicBooking(Request $request) {
+        $booking = DB::table('booking_list')->where($request->all())->get();
+        return response()->json($booking);
+    }
 }
