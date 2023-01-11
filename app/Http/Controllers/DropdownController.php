@@ -42,4 +42,9 @@ class DropdownController extends Controller
         $name = DB::table('expense_name')->where($request->all())->get();
         return response()->json($name);
     }
+
+    public function getPublicItem(Request $request) {
+        $item = DB::table('expense_item')->where($request->all())->get();
+        return response()->json($item);
+    }
 }
