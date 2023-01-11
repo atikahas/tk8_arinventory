@@ -11,14 +11,16 @@ class ExpensesController extends Controller
 {
     public function index() 
     {
-        $expenses = DB::select("
-            select a.*,b.name category, c.name subcategory from expense_item a
-            left join item_category b
-            on a.category_id = b.id
-            left join item_subcategory c
-            on a.subcategory_id = c.id
-        ");
+        // $expenses = DB::select("
+        //     select a.*,b.name category, c.name subcategory from expense_item a
+        //     left join item_category b
+        //     on a.category_id = b.id
+        //     left join item_subcategory c
+        //     on a.subcategory_id = c.id
+        // ");
 
+        $expenses = ExpenseItem::all();
+        
         return view('expense.index', (compact('expenses')));
     }
 

@@ -28,6 +28,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::get('data/getCategory', 'DropdownController@getCategory');
             Route::get('data/getSubCategory', 'DropdownController@getSubCategory');
             Route::get('data/getCategoryExpenses', 'DropdownController@getCategoryExpenses');
+            Route::get('data/getExpenseCategory', 'DropdownController@getExpenseCategory');
+            Route::get('data/getExpenseSubCategory', 'DropdownController@getExpenseSubCategory');
+            Route::get('data/getExpenseName', 'DropdownController@getExpenseName');
 
             Route::group(['prefix' => 'users'], function() {
                 Route::get('/', 'UsersController@index')->name('users.index');

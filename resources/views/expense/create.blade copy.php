@@ -25,17 +25,17 @@
                     <form method="POST" action="" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-6 mb-3 form-group">
-                                <label>Category</label>
-                                <select class="form-control expenses-category" name="category"></select>
+                            <div class="col-5 mb-3 form-group">
+                                <label for="name">Item Name</label>
+                                <input type="text" class="form-control expenses-name" name="item_name" placeholder="Enter item name">
                             </div>
-                            <div class="col-6 mb-3 form-group">
-                                <label>SubCategory</label>
-                                <select class="form-control expenses-subcategory" name="subcategory"></select>
+                            <div class="col-5 mb-3 form-group">
+                                <label for="name">Shop Name</label>
+                                <input type="text" class="form-control expenses-shop" name="item_shop" placeholder="Enter shop name">
                             </div>
-                            <div class="col-12 mb-3 form-group">
-                                <label>Item Name</label>
-                                <select class="form-control expenses-name" name="item_name"></select>
+                            <div class="col-2 mb-3 form-group">
+                                <label for="name">Date Purchased</label>
+                                <input type="date" class="form-control expenses-date" name="purchase_date">
                             </div>
                         </div>
                         <div class="mb-3 form-group">
@@ -43,13 +43,13 @@
                             <textarea class="form-control expenses-description" name="item_description" rows="2" placeholder="Enter item description"></textarea>
                         </div>
                         <div class="row">
-                            <div class="col-8 mb-3 form-group">
-                                <label for="name">Shop Name</label>
-                                <input type="text" class="form-control expenses-shop" name="item_shop" placeholder="Enter shop name">
+                            <div class="col-6 mb-3 form-group">
+                                <label>Category</label>
+                                <select class="form-control expenses-category" name="category_id"></select>
                             </div>
-                            <div class="col-4 mb-3 form-group">
-                                <label for="name">Date Purchased</label>
-                                <input type="date" class="form-control expenses-date" name="purchase_date">
+                            <div class="col-6 mb-3 form-group">
+                                <label>SubCategory</label>
+                                <select class="form-control expenses-subcategory" name="subcategory_id"></select>
                             </div>
                         </div>
                         <div class="row">
@@ -104,64 +104,42 @@
 @section('scriptfooter')
     <script>
         $(document).ready(function() {
-            getExpenseCategory();
+            getCategoryExpenses();
         });
 
-        $(document).on("change", "select[name=category]", function() {
-            var category = $(this).val();
-            getExpenseSubCategory(category);
+        $(document).on("change", "select[name=category_id]", function() {
+            var category_id = $(this).val();
+            getSubCategory(category_id);
         });
 
-        $(document).on("change", "select[name=subcategory]", function() {
-            var category = $("select[name=category]").val();
-            var subcategory = $(this).val();
-            getExpenseName(category,subcategory);
-        });
-
-        function getExpenseCategory() {
+        function getCategoryExpenses() {
             $.ajax({
-                url: "{{url('data/getExpenseCategory')}}",
+                url: "{{url('data/getCategoryExpenses')}}",
                 type: "GET",
                 success: function(response) {
-                    var category = '';
+                    var category_id = '';
                     $.each(response, function(index,value) {
-                        category += '<option value="'+value.name+'">'+value.name+'</option>'
+                        category_id += '<option value="'+value.id+'">'+value.name+'</option>'
                     });
-                    $("select[name=category]").html('<option value="">-- Select Category --</option>' + category);
+                    $("select[name=category_id]").html('<option value="">-- Select Category --</option>' + category_id);
                 }
             });
         }
 
-        function getExpenseSubCategory(category) {
+        function getSubCategory(category_id) {
             $.ajax({
-                url: "{{url('data/getExpenseSubCategory')}}",
+                url: "{{url('data/getSubCategory')}}",
                 type: "GET",
-                data: "category=" + category,
+                data: "category_id=" + category_id,
                 success: function(response) {
-                    var subcategory = '';
+                    var subcategory_id = '';
                     $.each(response, function(index,value) {
-                        subcategory += '<option value="'+value.name+'">'+value.name+'</option>'
+                        subcategory_id += '<option value="'+value.id+'">'+value.name+'</option>'
                     });
-                    $("select[name=subcategory]").html('<option value="">-- Select SubCategory --</option>' + subcategory);
+                    $("select[name=subcategory_id]").html('<option value="">-- Select SubCategory --</option>' + subcategory_id);
                 }
             });
         }
-
-        function getExpenseName(category, subcategory) {
-            $.ajax({
-                url: "{{url('data/getExpenseName')}}",
-                type: "GET",
-                data: "category=" + category + "&subcategory=" + subcategory,
-                success: function(response) {
-                    var name = '';
-                    $.each(response, function(index,value) {
-                        name += '<option value="'+value.name+'">'+value.name+'</option>'
-                    });
-                    $("select[name=item_name]").html('<option value="">-- Select Item --</option>' + name);
-                }
-            });
-        }
-
     </script>
     <script>
         var count_expenses = 0;
@@ -200,8 +178,8 @@
                         '<button class="btn btn-danger btn-xs btn-delete-expenses"><i class="mdi mdi-trash-can"></i></button>'+
                         '<input type="hidden" name="expenses['+count_expenses+'][item_name]" value="'+expenses_name+'">'+
                         '<input type="hidden" name="expenses['+count_expenses+'][item_description]" value="'+expenses_description+'">'+
-                        '<input type="hidden" name="expenses['+count_expenses+'][category]" value="'+expenses_category+'">'+
-                        '<input type="hidden" name="expenses['+count_expenses+'][subcategory]" value="'+expenses_subcategory+'">'+
+                        '<input type="hidden" name="expenses['+count_expenses+'][category_id]" value="'+expenses_category+'">'+
+                        '<input type="hidden" name="expenses['+count_expenses+'][subcategory_id]" value="'+expenses_subcategory+'">'+
                         '<input type="hidden" name="expenses['+count_expenses+'][purchase_date]" value="'+expenses_date+'">'+
                         '<input type="hidden" name="expenses['+count_expenses+'][item_shop]" value="'+expenses_shop+'">'+
                         '<input type="hidden" name="expenses['+count_expenses+'][size]" value="'+expenses_size+'">'+
