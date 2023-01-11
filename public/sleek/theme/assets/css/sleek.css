@@ -5065,8 +5065,9 @@ input[type="button"].btn-block {
 .page-link {
   position: relative;
   display: block;
-  padding: 1rem 1.25rem;
-  margin-left: -1px;
+  /* padding: 1rem 1.25rem; */
+  padding: 5px;
+  /* margin-left: -1px; */
   line-height: 1.25;
   color: #4c84ff;
   background-color: #ffffff;
@@ -15430,10 +15431,10 @@ div.copied {
 }
 
 /*===== PAGINATION =====*/
-.pagination .page-item:first-child .page-link,
+/* .pagination .page-item:first-child .page-link,
 .pagination .page-item:last-child .page-link {
   height: 51px;
-}
+} */
 
 .pagination .page-item.active .page-link {
   z-index: 3;
