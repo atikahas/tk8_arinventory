@@ -18,9 +18,9 @@
 
     <body>
         <div class="content" style="padding:0px">
-            <div class="row">
-                <div class="col-12">
-                <div class="card card-default">
+            <div class="row" style="height: 798.25px;">
+                <div class="col-12" style="height: 798.25px;">
+                <div class="card card-default" style="margin:0px">
                     <div class="card-body">
                         <div id="calendar"></div>
                     </div>
