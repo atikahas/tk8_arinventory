@@ -36,4 +36,14 @@ class BookingController extends Controller
             return back()->with('error', $e->getMessage())->withInput();
         }
     }
+
+    public function getPublicBooking() 
+    {
+        $booking = DB::table('booking_list')
+                    ->select(DB::raw("'Booked' as title, CONCAT(check_in, ' 00:00:00') as start, CONCAT(check_out, ' 23:59:00') as end"))
+                    ->get();
+        $arrbooking = $booking->toArray();
+
+        return view('booking.public', (compact('arrbooking')));
+    }
 }

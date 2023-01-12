@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('data/getPublicItem.json', 'App\Http\Controllers\DropdownController@getPublicItem');
 Route::get('data/getPublicBooking.json', 'App\Http\Controllers\DropdownController@getPublicBooking');
+Route::get('data/getPublicBooking', 'App\Http\Controllers\BookingController@getPublicBooking');
 
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
