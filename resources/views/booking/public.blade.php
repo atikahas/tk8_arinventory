@@ -17,17 +17,7 @@
     </head>
 
     <body>
-        <div class="content" style="padding:0px">
-            <div class="row" style="height: 798.25px;">
-                <div class="col-12" style="height: 798.25px;">
-                <div class="card card-default" style="margin:0px">
-                    <div class="card-body">
-                        <div id="calendar"></div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div id="calendar" style="background-color: white;"></div>
         
         <script src="{{url('')}}/sleek/theme/assets/plugins/jquery/jquery.min.js"></script>
         <script src="{{url('')}}/sleek/theme/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
