@@ -23,4 +23,17 @@ class BookingController extends Controller
     {
         return view('booking.create');
     }
+
+    public function store(Request $request) {
+        try {
+            $data = $request->all();
+            $data['created_by'] = Auth::user()->id;
+            $booking = BookingList::create($data);
+
+            return redirect()->route('booking.index')->withSuccess(__('Info booking added successfully.'));
+
+        } catch(\Exception $e) {
+            return back()->with('error', $e->getMessage())->withInput();
+        }
+    }
 }
