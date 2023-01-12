@@ -59,6 +59,7 @@
                                     <td style="text-align: right;">{{ number_format($e->total_price, 2) }}</td>
                                     <td>
                                         <a class="btn btn-sm btn-secondary" href="{{url('expenses/edit/'.$e->id.'?category='.$e->category.'&subcategory='.$e->subcategory.'&item_name='.$e->item_name)}}"><i class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="javascript:;" class="btn btn-sm btn-danger" onclick="deleteItem('{{$e->id}}')"><i class="mdi mdi-trash-can-outline"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -71,6 +72,44 @@
 @endsection
 
 @section('scriptfooter')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script>
+    function deleteItem(id) {
+        $.confirm({
+            title: 'Delete Item',
+            content: 'Are you sure want to delete this item?',
+            buttons: {
+                cancel: function () {
+                    
+                },
+                somethingElse: {
+                    text: 'DELETE',
+                    btnClass: 'btn-red',
+                    keys: ['enter', 'shift'],
+                    action: function(){
+                        $.ajax({
+                            url: "{{url('')}}/expenses/delete/" + id,
+                            type: "POST",
+                            data: "_token={{csrf_token()}}",
+                            success: function(response) {
+                                if(response.status == 'success') {
+                                    toastr.success('success', response.message);
+                                    location.reload();
+                                } else {
+                                    toastr.danger('danger', response.message);
+                                }
+                            },
+                            error: function(response) {
+                                toastr.danger('danger', response.message);
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+</script>
 <script>
     jQuery(document).ready(function() {
         jQuery('#items-table').DataTable({

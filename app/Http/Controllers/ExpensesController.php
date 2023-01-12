@@ -51,6 +51,15 @@ class ExpensesController extends Controller
         return redirect()->route('expenses.index')->withSuccess(__('Items updated successfully.'));
     }
 
+    public function destroy(Request $request, ExpenseItem $expense) {
+        try {
+            $expense->delete();
+            return response()->json(['status' => 'success', 'message' => 'Item Deleted']);
+        } catch(\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+
     public function summary() 
     {
         $ecategory = DB::select("

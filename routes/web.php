@@ -71,6 +71,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
                 Route::get('/{expense}/show', 'ExpensesController@show')->name('expenses.show');
                 Route::get('/edit/{expense}', 'ExpensesController@edit')->name('expenses.edit');
                 Route::patch('/{expense}/update', 'ExpensesController@update')->name('expenses.update');
+                Route::post('/delete/{expense}', 'ExpensesController@destroy');
                 Route::get('/summary', 'ExpensesController@summary')->name('expenses.summary');
             });
 
