@@ -12,7 +12,7 @@ class BookingController extends Controller
     public function index() 
     {
         $booking = DB::table('booking_list')
-                    ->select(DB::raw('guest_name as title, check_in as start, check_out as end'))
+                    ->select(DB::raw("guest_name as title, CONCAT(check_in, ' 00:00:00') as start, CONCAT(check_out, ' 23:59:00') as end"))
                     ->get();
         $arrbooking = $booking->toArray();
 

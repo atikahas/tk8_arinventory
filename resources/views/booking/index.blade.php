@@ -49,10 +49,12 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: [ 'dayGrid' ],
             defaultView: 'dayGridMonth',
-            events: {!!json_encode($arrbooking)!!}
+            displayEventTime: false,
+            events: {!!json_encode($arrbooking)!!},
         });
 
         calendar.render();
     });
 </script>
+
 @endsection
