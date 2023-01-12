@@ -10,6 +10,13 @@
         <link id="sleek-css" rel="stylesheet" href="{{url('')}}/sleek/theme/assets/css/sleek.css" />
         <link href="{{url('')}}/sleek/arlogo/ar-logo.png" rel="shortcut icon" />
         <script src="{{url('')}}/sleek/theme/assets/plugins/nprogress/nprogress.js"></script>
+
+        <style>
+            body {
+                background: linear-gradient(70deg, #ffffff, #a6c384);		
+            }
+            
+        </style>
     </head>
 
     <body class="" id="body">
@@ -19,9 +26,9 @@
                     <div class="card">
                         
 
-                        <div class="card-body p-5" style="background-color: #6b8f39">
+                        <div class="card-body p-5">
                             <div class="app-brand text-center" style="padding-bottom: 10px">
-                                <img src="{{url('')}}/sleek/arlogo/ar-logo3.png" width="350" height="125">
+                                <img src="{{url('')}}/sleek/arlogo/ar-logo2.png" width="350" height="125">
                             </div>
                             <form method="post" action="{{ route('login.perform') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -41,7 +48,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
+                                        <button type="submit" class="btn btn-lg btn-block mb-4" style="background-color:#6a8f39; color:white;">Sign In</button>
                                     </div>
                                 </div>
                             </form>
