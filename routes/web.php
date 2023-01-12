@@ -69,7 +69,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
                 Route::get('/create', 'ExpensesController@create')->name('expenses.create');
                 Route::post('/create', 'ExpensesController@store')->name('expenses.store');
                 Route::get('/{expense}/show', 'ExpensesController@show')->name('expenses.show');
-                Route::get('/{expense}/edit', 'ExpensesController@edit')->name('expenses.edit');
+                Route::get('/edit/{expense}', 'ExpensesController@edit')->name('expenses.edit');
                 Route::patch('/{expense}/update', 'ExpensesController@update')->name('expenses.update');
                 Route::get('/summary', 'ExpensesController@summary')->name('expenses.summary');
             });

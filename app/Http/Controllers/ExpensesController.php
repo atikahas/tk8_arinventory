@@ -11,14 +11,6 @@ class ExpensesController extends Controller
 {
     public function index() 
     {
-        // $expenses = DB::select("
-        //     select a.*,b.name category, c.name subcategory from expense_item a
-        //     left join item_category b
-        //     on a.category_id = b.id
-        //     left join item_subcategory c
-        //     on a.subcategory_id = c.id
-        // ");
-
         $expenses = ExpenseItem::all();
         
         return view('expense.index', (compact('expenses')));
@@ -43,6 +35,20 @@ class ExpensesController extends Controller
         } catch(\Exception $e) {
             return back()->with('error', $e->getMessage())->withInput();
         }
+    }
+
+    public function edit(ExpenseItem $expense)
+    {
+        return view('expense.edit', ['expense' => $expense]);
+    }
+
+    public function update(Request $request, ExpenseItem $expense)
+    {
+        $data = $request->except(['_token']);
+        $data['updated_by'] = Auth::user()->id;
+        $expense->update($data);
+
+        return redirect()->route('expenses.index')->withSuccess(__('Items updated successfully.'));
     }
 
     public function summary() 

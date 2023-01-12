@@ -58,8 +58,7 @@
                                     <td style="text-align: right;">{{ $e->quantity }}</td>
                                     <td style="text-align: right;">{{ number_format($e->total_price, 2) }}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" href="{{ route('expenses.show', $e->id) }}"><i class="mdi mdi-eye"></i></a>
-                                        <a class="btn btn-sm btn-secondary" href="{{url('expenses/edit/'.$e->id)}}"><i class="mdi mdi-square-edit-outline"></i></a>
+                                        <a class="btn btn-sm btn-secondary" href="{{url('expenses/edit/'.$e->id.'?category='.$e->category.'&subcategory='.$e->subcategory.'&item_name='.$e->item_name)}}"><i class="mdi mdi-square-edit-outline"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
