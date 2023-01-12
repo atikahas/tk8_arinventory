@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <div class="content">
+        <div class="content" style="padding:0px">
             <div class="row">
                 <div class="col-12">
                 <div class="card card-default">
