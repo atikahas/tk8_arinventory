@@ -120,11 +120,11 @@
                         <span class="nav-text">Add Expenses</span>
                       </a>
                     </li>
-                    {{-- <li class="@yield('summaryexpenses')">
+                    <li class="@yield('summaryexpenses')">
                       <a class="sidenav-item-link" href="{{ url('expenses/summary') }}">
                         <span class="nav-text">Summary Expenses</span>
                       </a>
-                    </li> --}}
+                    </li>
                   </div>
                 </ul>
               </li>

@@ -30,27 +30,7 @@
       <div class="col-12">
           <div class="card card-default">
               <div class="card-body">
-                  <table id="ecategory-table" class="table table-sm table-bordered dt-responsive table-hover nowrap" style="width:100%;">
-                      <thead>
-                          <tr>
-                              <td width="1%">#</td>
-                              <td width="74%">Category</td>
-                              <td width="25%">Total Expensed (RM)</td>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <?php $count = 0; ?>
-                          @foreach ($ecategory as $ec)
-                          <?php $count++; ?>
-                          <tr>
-                              <td>{{ $count }}</td>
-                              <td>{{ $ec->category }}</td>
-                              <td style="text-align: right;">{{ number_format($ec->sumprice, 2) }}</td>
-                          </tr>  
-                          @endforeach
-                          
-                      </tbody>
-                  </table>
+                <iframe src="https://mhdfarisx.github.io/AmanRimba/" style="height: 100vh;width:100%;" frameBorder="0"></iframe>
               </div>
           </div>
       </div>
@@ -58,13 +38,6 @@
 @endsection
 
 @section('scriptfooter')
-<script>
-    jQuery(document).ready(function() {
-        jQuery('#ecategory-table').DataTable({
-            order: [[0, 'asc']],
-        });
-    });
-</script>
 <script src="{{url('')}}/sleek/theme/assets/plugins/fullcalendar/core-4.3.1/main.min.js"></script>
 <script src="{{url('')}}/sleek/theme/assets/plugins/fullcalendar/daygrid-4.3.0/main.min.js"></script>
 <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>

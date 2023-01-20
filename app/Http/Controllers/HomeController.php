@@ -54,8 +54,132 @@ class HomeController extends Controller
             where percent_stock <= 25
         ");
 
-        // dd($ttllowitems,$ttlnoitems);
 
-        return view('home.index', (compact('ttlitems','ttllowitems','ttlnoitems','items','lowitems','noitems')));
+        $barexpenses = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item) b
+            on a.month = b.monthname)c
+            group by month,category
+            order by id)d
+        ");
+        $expenses = collect($barexpenses)->pluck('sumprice')->toArray();
+
+        $barcategory = new ExpenseItem;
+        $barcategory->max = (max(array_values($expenses)));
+        $barcategory->stepsize = ((max(array_values($expenses))) / 5);   
+
+        // dd($expenses);
+
+        $barfnb = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item where category = 'FnB') b
+            on a.month = b.monthname)c
+            group by month
+            order by id)d
+        ");
+        $resultbarfnb = collect($barfnb)->pluck('sumprice','month')->toArray();
+
+        $barhousekeeping = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item where category = 'Housekeeping') b
+            on a.month = b.monthname)c
+            group by month
+            order by id)d
+        ");
+        $resultbarhousekeeping = collect($barhousekeeping)->pluck('sumprice','month')->toArray();
+
+        $barmaintenance = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item where category = 'Maintenance') b
+            on a.month = b.monthname)c
+            group by month
+            order by id)d
+        ");
+        $resultmaintenance = collect($barmaintenance)->pluck('sumprice','month')->toArray();
+
+        $barlandscape = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item where category = 'Landscape') b
+            on a.month = b.monthname)c
+            group by month
+            order by id)d
+        ");
+        $resultlandscape = collect($barlandscape)->pluck('sumprice','month')->toArray();
+
+        $barstaff = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item where category = 'Staff') b
+            on a.month = b.monthname)c
+            group by month
+            order by id)d
+        ");
+        $resultstaff = collect($barstaff)->pluck('sumprice','month')->toArray();
+
+        $barlain = DB::select("
+            select month, round(sumprice,2) as sumprice from    
+            (select id, month, category, sum(total_price) as sumprice, purchase_date from
+            (select * from dd_month a
+            left join 
+            (select category,total_price, monthname(purchase_date) as monthname, purchase_date from expense_item where category = 'Lain-lain') b
+            on a.month = b.monthname)c
+            group by month
+            order by id)d
+        ");
+        $resultlain = collect($barlain)->pluck('sumprice','month')->toArray();
+
+        $barmonthlabel = new ExpenseItem;
+        $barmonthlabel->labels = (array_keys($resultbarfnb));
+
+        $barmonthdata = new ExpenseItem;
+        $barmonthdata->max = (max(array_values($expenses)));
+        $barmonthdata->fnb = (array_values($resultbarfnb));
+        $barmonthdata->hk = (array_values($resultbarhousekeeping));
+        $barmonthdata->maintenance = (array_values($resultmaintenance));
+        $barmonthdata->landscape = (array_values($resultlandscape));
+        $barmonthdata->staff = (array_values($resultstaff));
+        $barmonthdata->lain = (array_values($resultlain));
+
+        $ttlcurrybooking = BookingList::select(DB::raw('count(*) as totalyear'))
+                    ->whereRaw('year(check_out) = year(curdate())')
+                    ->count();
+
+        $ttlcurrmbooking = BookingList::select(DB::raw('count(*) as totalmonth'))
+                    ->whereRaw('month(check_out) = month(curdate())')
+                    ->count();
+
+        // dd($ttlcurrbooking);
+
+        return view('home.index', (compact(
+            'ttlitems',
+            'ttllowitems',
+            'ttlnoitems',
+            'items',
+            'lowitems',
+            'noitems',
+            'barmonthlabel',
+            'barmonthdata',
+            'barcategory',
+            'ttlcurrybooking',
+            'ttlcurrmbooking'
+            )
+        ));
     }
 }

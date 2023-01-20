@@ -12,6 +12,28 @@
 @section('content')
     
     <div id="accordion2" class="accordion accordion-shadow">
+
+        <div class="row">
+            <div class="col-12 text-center p-3">
+                <p style="background-color: #6a8f39; color:white;">SUMMARY BOOKING</p>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-6">
+                <div class="widget-block rounded bg-primary  d-flex">
+                    <div class="widget-info align-self-center">
+                        <h3 class="text-white mb-2">{{ $ttlcurrybooking }}</h3>
+                        <p class="text-white">Total Booking <b>{{ now()->year }}</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-6">
+                <div class="widget-block rounded bg-warning  d-flex">
+                    <div class="widget-info align-self-center">
+                        <h3 class="text-white mb-2">{{ $ttlcurrmbooking }}</h3>
+                        <p class="text-white">Total Booking <b>{{ now()->format('F') }}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-12 text-center p-3">
@@ -149,10 +171,18 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-12 text-center p-3">
-                <p style="background-color: #6a8f39; color:white;">SUMMARY EXPENSES</p>
+    <div class="row">
+        <div class="col-12 text-center p-3">
+            <p style="background-color: #6a8f39; color:white;">SUMMARY EXPENSES</p>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-12">
+            <div class="card pb-5">
+                <div class="card-body" style="height: 300px;">
+                    <canvas id="bar-monthly-category"></canvas>
+                    <div id='customLegend' class='customLegend'></div>
+                </div>
             </div>
         </div>
     </div>
@@ -168,6 +198,7 @@
 <script src="{{url('')}}/sleek/source/assets/plugins/data-tables/datatables.bootstrap4.min.js"></script>
 <script src="{{url('')}}/sleek/source/assets/plugins/data-tables/datatables.responsive.min.js"></script>
 <script src='{{url('')}}/sleek/theme/assets/plugins/charts/Chart.min.js'></script>
+{{-- <script src='{{url('')}}/sleek/theme/assets/js/chart.js'></script> --}}
 <script>
     jQuery(document).ready(function() {
         jQuery('#items-table').DataTable({
@@ -184,6 +215,119 @@
                 pageLength: 4,
                 dom: '<"top"f>rt<"bottom"p><"clear">',
         });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+        var acquisition3 = document.getElementById("bar-monthly-category");
+        if (acquisition3 !== null) {
+        var acChart3 = new Chart(acquisition3, {
+            // The type of chart we want to create
+            type: "bar",
+
+            // The data for our dataset
+            data: {
+            labels: @json($barmonthlabel->labels) ,
+            datasets: [
+                {
+                label: "F&B",
+                backgroundColor: "rgb(76, 132, 255)",
+                borderColor: "rgba(76, 132, 255,0)",
+                data: {!!json_encode($barmonthdata->fnb)!!},
+                pointBackgroundColor: "rgba(76, 132, 255,0)",
+                pointHoverBackgroundColor: "rgba(76, 132, 255,1)",
+                pointHoverRadius: 3,
+                pointHitRadius: 30
+                },
+                {
+                label: "Housekeeping",
+                backgroundColor: "rgb(254, 196, 0)",
+                borderColor: "rgba(254, 196, 0,0)",
+                data: {!!json_encode($barmonthdata->hk)!!},
+                pointBackgroundColor: "rgba(254, 196, 0,0)",
+                pointHoverBackgroundColor: "rgba(254, 196, 0,1)",
+                pointHoverRadius: 3,
+                pointHitRadius: 30
+                },
+                {
+                  label: "Maintenance",
+                  backgroundColor: "rgb(41, 204, 151)",
+                  borderColor: "rgba(41, 204, 151,0)",
+                  data: {!!json_encode($barmonthdata->maintenance)!!},
+                  pointBackgroundColor: "rgba(41, 204, 151,0)",
+                  pointHoverBackgroundColor: "rgba(41, 204, 151,1)",
+                  pointHoverRadius: 3,
+                  pointHitRadius: 30
+                },
+                {
+                  label: "Landscape",
+                  backgroundColor: "#896def",
+                  borderColor: "#8062ed",
+                  data: {!!json_encode($barmonthdata->landscape)!!},
+                  pointBackgroundColor: "#896def",
+                  pointHoverBackgroundColor: "#8062ed",
+                  pointHoverRadius: 3,
+                  pointHitRadius: 30
+                },
+                // {
+                //   label: "Staff",
+                //   backgroundColor: "#fe5461",
+                //   borderColor: "#ff3848",
+                //   data: {!!json_encode($barmonthdata->staff)!!},
+                //   pointBackgroundColor: "#fe5461",
+                //   pointHoverBackgroundColor: "#ff3848",
+                //   pointHoverRadius: 3,
+                //   pointHitRadius: 30
+                // },
+                // {
+                //   label: "Lain-lain",
+                //   backgroundColor: "#8a909d",
+                //   borderColor: "#6c757d",
+                //   data: {!!json_encode($barmonthdata->lain)!!},
+                //   pointBackgroundColor: "#8a909d",
+                //   pointHoverBackgroundColor: "#6c757d",
+                //   pointHoverRadius: 3,
+                //   pointHitRadius: 30
+                // },
+            ]
+            },
+
+            // Configuration options go here
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [
+                {
+                    gridLines: {
+                    display: false
+                    }
+                }
+                ],
+                yAxes: [
+                {
+                    gridLines: {
+                    display: true
+                    },
+                    ticks: {
+                    beginAtZero: true,
+                    stepSize: {!!json_encode( $barcategory->stepsize )!!},
+                    fontColor: "#8a909d",
+                    fontFamily: "Roboto, sans-serif",
+                    max: {!!json_encode( $barcategory->max )!!} 
+                    }
+                }
+                ]
+            },
+            tooltips: {}
+            }
+        });
+        document.getElementById("customLegend").innerHTML = acChart3.generateLegend();
+        }
     });
 </script>
 @endsection

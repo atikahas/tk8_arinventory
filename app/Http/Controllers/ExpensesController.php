@@ -62,18 +62,7 @@ class ExpensesController extends Controller
 
     public function summary() 
     {
-        $ecategory = DB::select("
-            select category, sum(total_price) sumprice from
-            (select a.*,b.name category, c.name subcategory from expense_item a
-            left join item_category b
-            on a.category_id = b.id
-            left join item_subcategory c
-            on a.subcategory_id = c.id)d
-            group by category
-        ");
-        
-        // dd($groups, $ecategory, $emonthfood, $emonthcutleries ,$resultcutleries);
 
-        return view('expense.summary', (compact('ecategory')));
+        return view('expense.summary');
     }
 }
