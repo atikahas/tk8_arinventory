@@ -6,6 +6,18 @@
 @section('addbooking', 'active')
 
 @section('content')
+    <div class="breadcrumb-wrapper">
+        <h1>Booking Management</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb p-0">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/') }}"><span class="mdi mdi-home"></span></a>
+                </li>
+                <li class="breadcrumb-item">booking</li>
+                <li class="breadcrumb-item" aria-current="page">add booking</li>
+            </ol>
+        </nav>
+    </div> 
     <div class="row">
         <div class="col-12">
           <div class="card card-default">

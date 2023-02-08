@@ -125,6 +125,11 @@
                         <span class="nav-text">Summary Expenses</span>
                       </a>
                     </li>
+                    <li class="@yield('reportexpenses')">
+                      <a class="sidenav-item-link" href="{{ url('expenses/report') }}">
+                        <span class="nav-text">Report Expenses</span>
+                      </a>
+                    </li>
                   </div>
                 </ul>
               </li>

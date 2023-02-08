@@ -74,6 +74,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
                 Route::patch('/{expense}/update', 'ExpensesController@update')->name('expenses.update');
                 Route::post('/delete/{expense}', 'ExpensesController@destroy');
                 Route::get('/summary', 'ExpensesController@summary')->name('expenses.summary');
+                Route::get('/report', 'ExpensesController@report')->name('expenses.report');
+                Route::get('/create/report', 'ExpensesController@createreport')->name('expenses.create.report');
+                Route::post('/create/report', 'ExpensesController@storereport')->name('expenses.store.report');
+                Route::get('/{expenses}/report/show', 'ExpensesController@showreport')->name('expenses.report.show');
             });
 
             Route::group(['prefix' => 'booking'], function() {
